@@ -47,5 +47,5 @@ stages:
         docker build -t $(dockerId)/$(imageName) .
         docker login -username sbadockerregistry -password ziXQWrY+6RZ+gdYeo+4jhvbZsSJO=Tb= https://$(dockerId).azurecr.io
         docker push https://$(dockerId).azurecr.io/$(imageName)
-      env:
-        pswd: $(dockerPassword)
+      #env:
+      #  pswd: $(dockerPassword)
