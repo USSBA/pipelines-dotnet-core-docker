@@ -45,7 +45,7 @@ stages:
    #       $(tag)
     - script: |
         docker build -t $(dockerId)/$(imageName) .
-        docker login -username sbadockerregistry -password ziXQWrY+6RZ+gdYeo+4jhvbZsSJO=Tb= sbadockerregistry.azurecr.io
+        docker login -uusername=sbadockerregistry -password=ziXQWrY+6RZ+gdYeo+4jhvbZsSJO=Tb= sbadockerregistry.azurecr.io
         docker push (dockerId).azurecr.io/$(imageName)
       #env:
       #  pswd: $(dockerPassword)
