@@ -9,19 +9,19 @@ resources:
 - repo: self
 
 variables:
-#  # Container registry service connection established during pipeline creation
-#  dockerRegistryServiceConnection: '4e4e7e7b-c245-4773-8181-1e8b8e96873c'
-#  imageRepository: 'dotnetcoredocker'
-#  containerRegistry: 'dockercontainregistry.azurecr.io'
-#  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
-#  tag: '$(Build.BuildId)'
+  # Container registry service connection established during pipeline creation
+  dockerRegistryServiceConnection: 'azuredevop'
+  imageRepository: 'dotnetcoredocker'
+  containerRegistry: 'dockercontainregistry.azurecr.io'
+  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
+  tag: '$(Build.BuildId)'
   dockerId: sbadockerregistry
   imageName: dontnetdockerimage
 
 
 
   # Agent VM image name
-#  vmImageName: 'ubuntu-latest'
+  vmImageName: 'ubuntu-latest'
 #pool:
 #   vmImage: 'ubuntu-16.04'
 
@@ -34,18 +34,18 @@ stages:
     pool:
       vmImage: 'ubuntu-16.04'
     steps:
-   # - task: Docker@2
-   #   displayName: Build and push an image to container registry
-   #   inputs:
-   #     command: buildAndPush
-   #     repository: $(imageRepository)
-   #     dockerfile: $(dockerfilePath)
-   #     containerRegistry: $(dockerRegistryServiceConnection)
-   #     tags: |
-   #       $(tag)
-    - script: |
-        docker build -t $(dockerId)/$(imageName) .
-        docker login -uusername=sbadockerregistry -password=ziXQWrY+6RZ+gdYeo+4jhvbZsSJO=Tb= sbadockerregistry.azurecr.io
-        docker push $(dockerId).azurecr.io/$(imageName)
+    - task: Docker@2
+      displayName: Build and push an image to container registry
+      inputs:
+        command: buildAndPush
+        repository: $(imageRepository)
+        dockerfile: $(dockerfilePath)
+        containerRegistry: $(dockerRegistryServiceConnection)
+        tags: |
+          $(tag)
+   # - script: |
+   #     docker build -t $(dockerId)/$(imageName) .
+   #     docker login -uusername=sbadockerregistry -password=ziXQWrY+6RZ+gdYeo+4jhvbZsSJO=Tb= sbadockerregistry.azurecr.io
+   #     docker push $(dockerId).azurecr.io/$(imageName)
       #env:
       #  pswd: $(dockerPassword)
