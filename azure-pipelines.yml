@@ -46,6 +46,6 @@ stages:
     - script: |
         docker build -t $(dockerId)/$(imageName) .
         docker login -u $(dockerId) -p $(pswd) https://$(dockerId).azurecr.io
-        docker push $(dockerId).azurecr.io/$(imageName)
+        docker push https://$(dockerId).azurecr.io/$(imageName)
       env:
         pswd: $(dockerPassword)
