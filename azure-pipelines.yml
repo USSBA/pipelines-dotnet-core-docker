@@ -10,7 +10,7 @@ resources:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: 'AzureDevOps'
+  dockerRegistryServiceConnection: 'sbadockerregistryconnection'
   imageRepository: 'dotnetcoredocker'
   containerRegistry: 'dockercontainregistry.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
